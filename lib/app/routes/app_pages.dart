@@ -1,18 +1,31 @@
 import 'package:get/get.dart';
 import 'package:principle_fe/app/bindings/auth/login_binding.dart';
 import 'package:principle_fe/app/bindings/splash_binding.dart';
+import 'package:principle_fe/app/bindings/tmp_binding.dart';
 import 'package:principle_fe/app/routes/middlewares/auth_middleware.dart';
 import 'package:principle_fe/app/ui/auth/login_page.dart';
 import 'package:principle_fe/app/ui/commons/splash_page.dart';
-import 'package:principle_fe/main.dart';
+import 'package:principle_fe/app/ui/etc/prview_chart_page.dart';
+import 'package:principle_fe/app/ui/etc/tmp_page.dart';
+import 'package:principle_fe/app/ui/main_page.dart';
 part './app_routes.dart';
 
 class AppPages {
   static final pages = [
     GetPage(
         name: AppRoutes.home,
-        page: () => const MyHomePage(title: 'principle'),
+        page: () => const MainPage(title: 'principle'),
         middlewares: [authGuard]),
+    GetPage(
+        name: AppRoutes.previewChart,
+        page: () => const PreviewChartPage(),
+        middlewares: [authGuard]),
+    GetPage(
+      name: AppRoutes.tmp,
+      page: () => const TmpPage(),
+      middlewares: [authGuard],
+      binding: TmpBinding(),
+    ),
     GetPage(
       name: AppRoutes.splash,
       page: () => const SplashPage(),

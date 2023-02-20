@@ -1,9 +1,10 @@
 import 'package:logger/logger.dart';
 
-var logger = Logger(
-  printer: PrettyPrinter(),
+var loggerStack = Logger(
+  printer: PrettyPrinter(colors: false),
 );
 
-var loggerNoStack = Logger(
-  printer: PrettyPrinter(methodCount: 0),
+var logger = Logger(
+  printer:
+      PrettyPrinter(methodCount: 0, colors: false, noBoxingByDefault: true),
 );
