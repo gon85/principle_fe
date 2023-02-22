@@ -46,6 +46,7 @@ dependencies:
   jwt_decode: ^0.3.1
   get: ^4.6.5
   logger: ^1.1.0
+  flex_color_scheme: ^6.1.2
 
 dev_dependencies:
   flutter_test:
