@@ -13,9 +13,10 @@ class SplashPage extends GetView<SplashController> {
     SplashController.to;
     return Scaffold(
         body: Center(
-            child: Obx(() =>
-                AuthController.to.authStatus == AuthenticationStatus.unknown
-                    ? const Text('checked login')
-                    : const Text('required login'))));
+            // child: Obx(() =>
+            //     AuthController.to.authStatus == AuthenticationStatus.unknown
+            //         ? const Text('checked login')
+            //         : const Text('required login'))));
+            child: Obx(() => Text('${SplashController.to.stepMessage}'))));
   }
 }

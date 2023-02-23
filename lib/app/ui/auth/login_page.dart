@@ -36,6 +36,7 @@ class LoginPage extends GetView<LoginController> {
                           controller.email = newValue!;
                         },
                       ),
+                      const SizedBox(height: 10),
                       TextFormField(
                         initialValue: '01!!xfortesting',
                         decoration:
@@ -50,6 +51,7 @@ class LoginPage extends GetView<LoginController> {
                           controller.pw = newValue!;
                         },
                       ),
+                      const SizedBox(height: 10),
                       ElevatedButton(
                           onPressed: controller.handlePressedLogin,
                           child: Text(
