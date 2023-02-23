@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -23,22 +21,6 @@ class RestApi extends GetConnect {
         query: query,
         decoder: decoder);
   }
-  // // Get request
-  // Future<Response> getUser(int id) => get('http://youapi/users/$id');
-  // // Post request
-  // Future<Response> postUser(Map data) => post('http://youapi/users', body: data);
-  // // Post request with File
-  // Future<Response<CasesModel>> postCases(List<int> image) {
-  //   final form = FormData({
-  //     'file': MultipartFile(image, filename: 'avatar.png'),
-  //     'otherFile': MultipartFile(image, filename: 'cover.png'),
-  //   });
-  //   return post('http://youapi/users/upload', form);
-  // }
-
-  // GetSocket userMessages() {
-  //   return socket('https://yourapi/users/socket');
-  // }
 
   Future<Response> getStockDailyPriceInfo({
     required String isuSrtCd,
@@ -52,5 +34,9 @@ class RestApi extends GetConnect {
       'fromDate': fromDate,
       'toDate': toDate
     });
+  }
+
+  Future<Response> getUserCreterionInfo() async {
+    return _get('${dotenv.env['API_URL']}/api/creterions', query: {});
   }
 }

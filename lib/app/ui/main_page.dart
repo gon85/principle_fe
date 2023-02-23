@@ -1,46 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:principle_fe/app/controllers/global/count_controller.dart';
+import 'package:principle_fe/app/controllers/global/main_controller.dart';
+import 'package:principle_fe/app/ui/stocks/stock_page.dart';
+import 'package:principle_fe/app/ui/tradings/trading_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key, required this.title});
 
   final String title;
 
+  static List<Widget> tabPages = <Widget>[
+    const StocksPage(),
+    const TradingPage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    // final controller = Get.put(CounterSimpleController());
-    final controller2 = Get.put(CounterResponsiveController());
+    final controller = Get.put(MainController());
 
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            GestureDetector(
-              onTap: controller2.moveToPreviewChart,
-              child: const Text(
-                'Simple Chart',
-              ),
-            ),
-            Obx(() => Text(
-                  '${controller2.count.value}',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ))
-          ],
-        ),
+      body: Obx(() => SafeArea(child: tabPages[controller.tabIndex.value])),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.grey,
+        currentIndex: controller.tabIndex.value,
+        onTap: controller.setTabIndex,
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.card_giftcard), label: 'Tab1'),
+          BottomNavigationBarItem(icon: Icon(Icons.show_chart), label: 'Tab2'),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: controller2.increment,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

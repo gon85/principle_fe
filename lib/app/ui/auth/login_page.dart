@@ -23,7 +23,7 @@ class LoginPage extends GetView<LoginController> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       TextFormField(
-                        initialValue: 'otestTrading001@e2e.com',
+                        initialValue: 'otest001@e2e.com',
                         decoration: InputDecoration(
                             labelText: 'Email ${controller.email}'),
                         validator: (value) {

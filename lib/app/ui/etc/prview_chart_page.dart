@@ -4,7 +4,6 @@ import 'package:graphic/graphic.dart';
 import 'package:principle_fe/app/data/models/stocks/stock_daily_price.dart';
 import 'package:principle_fe/app/data/models/stocks/stock_daily_price_info.dart';
 import 'package:principle_fe/app/data/providers/rest_api.dart';
-import 'package:principle_fe/utils/logs/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomScrollBehavior extends MaterialScrollBehavior {

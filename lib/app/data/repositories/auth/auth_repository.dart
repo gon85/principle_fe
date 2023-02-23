@@ -18,10 +18,6 @@ class AuthenticationRepository {
     required String email,
     required String pw,
   }) async {
-    debugPrint('$email, $pw');
-
-    await Future.delayed(const Duration(seconds: 1));
-
     final rep = await authApi.authenticate(email: email, pw: pw);
 
     if (rep.statusCode == HttpStatus.created) {
