@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:principle_fe/app/controllers/global/main_controller.dart';
-import 'package:principle_fe/app/ui/stocks/stock_page.dart';
-import 'package:principle_fe/app/ui/tradings/trading_page.dart';
+import 'package:principle_fe/app/ui/pages/stocks/stock_page.dart';
+import 'package:principle_fe/app/ui/pages/tradings/trading_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key, required this.title});
