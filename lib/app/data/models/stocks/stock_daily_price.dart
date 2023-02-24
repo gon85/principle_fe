@@ -31,14 +31,14 @@ class StockDailyPrices {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["isuSrtCd"] = isuSrtCd;
-    _data["baseDt"] = baseDt;
-    _data["clpr"] = clpr;
-    _data["mkp"] = mkp;
-    _data["hipr"] = hipr;
-    _data["lopr"] = lopr;
-    _data["trqu"] = trqu;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["isuSrtCd"] = isuSrtCd;
+    data["baseDt"] = baseDt;
+    data["clpr"] = clpr;
+    data["mkp"] = mkp;
+    data["hipr"] = hipr;
+    data["lopr"] = lopr;
+    data["trqu"] = trqu;
+    return data;
   }
 }

@@ -1,10 +1,24 @@
 import 'package:get/get.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RestApi extends GetConnect {
-  late String accessToken;
+  String? accessToken;
 
-  RestApi(this.accessToken);
+  RestApi._privateConstructor();
+  static final RestApi _instance = RestApi._privateConstructor();
+
+  factory RestApi() {
+    return _instance;
+  }
+
+  Future<void> _init() async {
+    if (accessToken == null) {
+      final prefs = await SharedPreferences.getInstance();
+      String? token = prefs.getString('accessToken');
+      accessToken = token ?? '';
+    }
+  }
 
   Future<Response<T>> _get<T>(
     String url, {
@@ -12,7 +26,8 @@ class RestApi extends GetConnect {
     String? contentType,
     Map<String, dynamic>? query,
     Decoder<T>? decoder,
-  }) {
+  }) async {
+    await _init();
     headers ??= {};
     headers['Authorization'] = 'Bearer $accessToken';
     return get(url,
@@ -38,5 +53,9 @@ class RestApi extends GetConnect {
 
   Future<Response> getUserCreterionInfo() async {
     return _get('${dotenv.env['API_URL']}/api/creterions', query: {});
+  }
+
+  Future<Response> getUserTradingInfo() async {
+    return _get('${dotenv.env['API_URL']}/api/tradings', query: {});
   }
 }

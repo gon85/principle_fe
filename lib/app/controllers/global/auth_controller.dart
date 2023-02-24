@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:principle_fe/app/data/models/authentications/auth.dart';
@@ -7,8 +6,8 @@ import 'package:principle_fe/app/data/models/errors/response_exception.dart';
 import 'package:principle_fe/app/data/providers/rest_api.dart';
 import 'package:principle_fe/app/data/repositories/auth/auth_repository.dart';
 import 'package:principle_fe/app/data/repositories/creterions/creterion_repository.dart';
-import 'package:principle_fe/app/routes/app_pages.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:principle_fe/app/routes/app_pages.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
@@ -16,10 +15,11 @@ class AuthController extends GetxController {
   static AuthController get to => Get.find<AuthController>();
 
   AuthController({required this.authRepo}) {
-    SharedPreferences.getInstance().then((prefs) {
-      String? token = prefs.getString('accessToken');
-      creterionRepo = CreterionRepository(restApi: RestApi(token ?? ''));
-    });
+    creterionRepo = CreterionRepository(restApi: RestApi());
+    // SharedPreferences.getInstance().then((prefs) {
+    //   String? token = prefs.getString('accessToken');
+    //   creterionRepo = CreterionRepository(restApi: RestApi(token ?? ''));
+    // });
   }
 
   final AuthenticationRepository authRepo;
@@ -38,7 +38,7 @@ class AuthController extends GetxController {
     try {
       AuthModel am = await authRepo.authentificate(email: email, pw: pw);
       _authStatus.value = AuthenticationStatus.authenticated;
-      creterionRepo?.restApi = RestApi(am.accessToken);
+      creterionRepo?.restApi.accessToken = am.accessToken;
     } on ResponseException catch (er) {
       Fluttertoast.showToast(msg: er.message, toastLength: Toast.LENGTH_LONG);
     } catch (error) {

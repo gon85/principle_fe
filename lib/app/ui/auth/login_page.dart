@@ -31,6 +31,7 @@ class LoginPage extends GetView<LoginController> {
                             return '필수 값 입니다.';
                           }
                           if (!isEmail(value)) return 'email 형식이 아닙니다.';
+                          return null;
                         },
                         onSaved: (newValue) {
                           controller.email = newValue!;
@@ -46,6 +47,7 @@ class LoginPage extends GetView<LoginController> {
                           if (value == null || value.isEmpty) {
                             return '필수 값 입니다.';
                           }
+                          return null;
                         },
                         onSaved: (newValue) {
                           controller.pw = newValue!;

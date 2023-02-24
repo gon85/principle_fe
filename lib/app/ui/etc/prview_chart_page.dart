@@ -4,7 +4,6 @@ import 'package:graphic/graphic.dart';
 import 'package:principle_fe/app/data/models/stocks/stock_daily_price.dart';
 import 'package:principle_fe/app/data/models/stocks/stock_daily_price_info.dart';
 import 'package:principle_fe/app/data/providers/rest_api.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomScrollBehavior extends MaterialScrollBehavior {
   const CustomScrollBehavior();
@@ -25,7 +24,7 @@ class PreviewChartPage extends StatefulWidget {
 
 class _PreviewChartPageState extends State<PreviewChartPage> {
   late StockDailyPriceInfo _sdp;
-  List<StockDailyPrices> _prices = [];
+  final List<StockDailyPrices> _prices = [];
 
   @override
   void initState() {
@@ -33,21 +32,30 @@ class _PreviewChartPageState extends State<PreviewChartPage> {
     // rootBundle.loadString('assets/data.json').then((json) {
     //   final items = jsonDecode(json) as List<dynamic>;
     // });
-    SharedPreferences.getInstance().then((prefs) {
-      String? token = prefs.getString('accessToken');
-      if (token != null) {
-        final restApi = RestApi(token);
-        restApi
-            .getStockDailyPriceInfo(isuSrtCd: 'KOSPI', isuCd: 'KOSPI')
-            .then((rep) {
-          _sdp = StockDailyPriceInfo.fromJson(rep.body);
-          setState(() {
-            _prices.addAll(_sdp.stockDailyPrices.reversed);
-          });
-          // loggerStack.d(rep.body);
-        });
-      }
+    RestApi()
+        .getStockDailyPriceInfo(isuSrtCd: 'KOSPI', isuCd: 'KOSPI')
+        .then((rep) {
+      _sdp = StockDailyPriceInfo.fromJson(rep.body);
+      setState(() {
+        _prices.addAll(_sdp.stockDailyPrices.reversed);
+      });
+      // loggerStack.d(rep.body);
     });
+
+    // SharedPreferences.getInstance().then((prefs) {
+    //   String? token = prefs.getString('accessToken');
+    //   if (token != null) {
+    //     restApi
+    //         .getStockDailyPriceInfo(isuSrtCd: 'KOSPI', isuCd: 'KOSPI')
+    //         .then((rep) {
+    //       _sdp = StockDailyPriceInfo.fromJson(rep.body);
+    //       setState(() {
+    //         _prices.addAll(_sdp.stockDailyPrices.reversed);
+    //       });
+    //       // loggerStack.d(rep.body);
+    //     });
+    //   }
+    // });
   }
 
   @override

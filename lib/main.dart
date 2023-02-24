@@ -4,9 +4,7 @@ import 'package:get/get.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:principle_fe/app/controllers/global/auth_controller.dart';
 import 'package:principle_fe/app/data/providers/auth_api.dart';
-import 'package:principle_fe/app/data/providers/rest_api.dart';
 import 'package:principle_fe/app/data/repositories/auth/auth_repository.dart';
-import 'package:principle_fe/app/data/repositories/creterions/creterion_repository.dart';
 import 'package:principle_fe/app/routes/app_pages.dart';
 
 void main() async {

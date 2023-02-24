@@ -45,16 +45,16 @@ class Corparation {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["isuSrtCd"] = isuSrtCd;
-    _data["isuCd"] = isuCd;
-    _data["isuAbbrv"] = isuAbbrv;
-    _data["kindStkcertTpNm"] = kindStkcertTpNm;
-    _data["isuNm"] = isuNm;
-    _data["isuNmDisassemble"] = isuNmDisassemble;
-    _data["corpCode"] = corpCode;
-    _data["createdAt"] = createdAt;
-    _data["updatedAt"] = updatedAt;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["isuSrtCd"] = isuSrtCd;
+    data["isuCd"] = isuCd;
+    data["isuAbbrv"] = isuAbbrv;
+    data["kindStkcertTpNm"] = kindStkcertTpNm;
+    data["isuNm"] = isuNm;
+    data["isuNmDisassemble"] = isuNmDisassemble;
+    data["corpCode"] = corpCode;
+    data["createdAt"] = createdAt;
+    data["updatedAt"] = updatedAt;
+    return data;
   }
 }

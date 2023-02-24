@@ -25,12 +25,11 @@ class StockDailyPriceInfo {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data["corparation"] = corparation?.toJson();
+    data["corparation"] = corparation.toJson();
     if (userCorpStats != null) {
       data["userCorpStats"] = userCorpStats?.toJson();
     }
-    data["stockDailyPrices"] =
-        stockDailyPrices?.map((e) => e.toJson()).toList();
+    data["stockDailyPrices"] = stockDailyPrices.map((e) => e.toJson()).toList();
     return data;
   }
 }
@@ -76,14 +75,14 @@ class UserCorpStats {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["userId"] = userId;
-    _data["isuSrtCd"] = isuSrtCd;
-    _data["hstCount"] = hstCount;
-    _data["hstCountTm"] = hstCountTm;
-    _data["hstLastAt"] = hstLastAt;
-    _data["favoriteCount"] = favoriteCount;
-    _data["favoriteLastAt"] = favoriteLastAt;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["userId"] = userId;
+    data["isuSrtCd"] = isuSrtCd;
+    data["hstCount"] = hstCount;
+    data["hstCountTm"] = hstCountTm;
+    data["hstLastAt"] = hstLastAt;
+    data["favoriteCount"] = favoriteCount;
+    data["favoriteLastAt"] = favoriteLastAt;
+    return data;
   }
 }

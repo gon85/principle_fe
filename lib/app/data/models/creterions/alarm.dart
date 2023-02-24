@@ -24,13 +24,13 @@ class Alarms {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["userId"] = userId;
-    _data["alarmCategoryCd"] = alarmCategoryCd;
-    _data["time"] = time;
-    _data["isUse"] = isUse;
-    _data["createdAt"] = createdAt;
-    _data["updatedAt"] = updatedAt;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["userId"] = userId;
+    data["alarmCategoryCd"] = alarmCategoryCd;
+    data["time"] = time;
+    data["isUse"] = isUse;
+    data["createdAt"] = createdAt;
+    data["updatedAt"] = updatedAt;
+    return data;
   }
 }

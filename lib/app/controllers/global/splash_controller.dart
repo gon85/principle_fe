@@ -17,10 +17,10 @@ class SplashController extends GetxController {
     stepMessage.value = 'initialize user info';
     if (AuthController.to.authStatus == AuthenticationStatus.authenticated) {
       await AuthController.to.getUserCreterionsInfo();
-      await Future.delayed(const Duration(seconds: 2));
+      // await Future.delayed(const Duration(seconds: 2));
       Get.offNamed(AppRoutes.home);
     } else {
-      await Future.delayed(const Duration(seconds: 2));
+      // await Future.delayed(const Duration(seconds: 2));
       Get.offNamed(AppRoutes.login);
     }
   }
