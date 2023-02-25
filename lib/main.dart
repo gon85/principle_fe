@@ -2,7 +2,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
-import 'package:principle_fe/app/controllers/global/auth_controller.dart';
+import 'package:principle_fe/app/controllers/global/global_controller.dart';
 import 'package:principle_fe/app/data/providers/auth_api.dart';
 import 'package:principle_fe/app/data/repositories/auth/auth_repository.dart';
 import 'package:principle_fe/app/routes/app_pages.dart';
@@ -18,7 +18,7 @@ void main() async {
     await dotenv.load(fileName: 'assets/configs/.env.$mode');
   }
 
-  Get.put(AuthController(
+  Get.put(GlobalController(
     authRepo: AuthenticationRepository(
       authApi: AuthApi(),
     ),
@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
         subThemesData: const FlexSubThemesData(
           blendOnLevel: 10,
           blendOnColors: false,
+          fabSchemeColor: SchemeColor.primary,
         ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
         // To use the playground font, add GoogleFonts package and uncomment

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:principle_fe/app/controllers/global/auth_controller.dart';
+import 'package:principle_fe/app/controllers/global/global_controller.dart';
 import 'package:principle_fe/app/routes/app_pages.dart';
 
 class SplashController extends GetxController {
@@ -12,11 +12,11 @@ class SplashController extends GetxController {
   void onReady() async {
     super.onReady();
 
-    AuthController authController = Get.find<AuthController>();
+    GlobalController authController = Get.find<GlobalController>();
     await authController.hasToken(1);
     stepMessage.value = 'initialize user info';
-    if (AuthController.to.authStatus == AuthenticationStatus.authenticated) {
-      await AuthController.to.getUserCreterionsInfo();
+    if (GlobalController.to.authStatus == AuthenticationStatus.authenticated) {
+      await GlobalController.to.init();
       // await Future.delayed(const Duration(seconds: 2));
       Get.offNamed(AppRoutes.home);
     } else {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:principle_fe/app/controllers/global/auth_controller.dart';
+import 'package:principle_fe/app/controllers/global/global_controller.dart';
 import 'package:principle_fe/app/routes/app_pages.dart';
 import 'package:principle_fe/utils/logs/logger.dart';
 
@@ -31,7 +31,7 @@ class _AuthGuard extends GetMiddleware {
 
   @override
   RouteSettings? redirect(String? route) {
-    if (AuthController.to.authStatus != AuthenticationStatus.authenticated) {
+    if (GlobalController.to.authStatus != AuthenticationStatus.authenticated) {
       return const RouteSettings(name: AppRoutes.login);
     }
     return null;
