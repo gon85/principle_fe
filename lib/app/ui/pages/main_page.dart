@@ -19,10 +19,10 @@ class MainPage extends StatelessWidget {
     final controller = Get.put(MainController());
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Obx(() => SafeArea(child: tabPages[controller.tabIndex.value])),
+      // appBar: AppBar(
+      //   title: Text(title),
+      // ),
+      body: Obx(() => tabPages[controller.tabIndex.value]),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.grey,
         currentIndex: controller.tabIndex.value,
