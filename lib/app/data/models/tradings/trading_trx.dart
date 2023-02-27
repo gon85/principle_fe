@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class TradingTrx {
   int? id;
   int? tradingId;
@@ -48,5 +50,26 @@ class TradingTrx {
     data["tradingAt"] = tradingAt;
     data["createdAt"] = createdAt;
     return data;
+  }
+}
+
+enum TradingTypes {
+  buying('B', '매수'),
+  selling('S', '매도');
+
+  const TradingTypes(this.code, this.displayName);
+  final String code;
+  final String displayName;
+
+  factory TradingTypes.getByCode(String code) {
+    return TradingTypes.values.firstWhere((value) => value.code == code,
+        orElse: () => TradingTypes.buying);
+  }
+
+  static getDropdownMenuItems() {
+    return TradingTypes.values
+        .map((e) => DropdownMenuItem<TradingTypes>(
+            value: e, child: Text(e.displayName)))
+        .toList();
   }
 }

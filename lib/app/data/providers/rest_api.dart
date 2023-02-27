@@ -56,7 +56,7 @@ class RestApi extends GetConnect {
     return post(
       url,
       body,
-      contentType: contentType,
+      contentType: contentType ?? 'application/json',
       headers: _appendAuthorization(headers),
       query: query,
       decoder: decoder,
@@ -91,6 +91,6 @@ class RestApi extends GetConnect {
   }
 
   Future<Response> saveTradingTrx(TradingTrx ttTarget) async {
-    return _post('${dotenv.env['API_URL']}/api/tradings', ttTarget);
+    return _post('${dotenv.env['API_URL']}/api/tradings', ttTarget.toJson());
   }
 }

@@ -27,9 +27,9 @@ class TradingRepository {
 
   Future<TradingInfo> saveTradingTrx(TradingTrx tt) async {
     logger.i('----> getTradingInfos!!!');
-    final rep = await restApi.getUserTradingInfo();
+    final rep = await restApi.saveTradingTrx(tt);
 
-    if (rep.statusCode == HttpStatus.ok) {
+    if (rep.statusCode == HttpStatus.created) {
       TradingInfo ti = TradingInfo.fromJson(rep.body);
       return ti;
     } else {

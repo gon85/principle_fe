@@ -4,9 +4,11 @@ import 'package:principle_fe/app/data/models/tradings/trading_mst.dart';
 import 'package:principle_fe/utils/numbers/number_uttils.dart';
 
 class TradingCard extends StatelessWidget {
-  const TradingCard({super.key, required this.tmTarget, this.onPressed});
+  const TradingCard(
+      {super.key, required this.tmTarget, this.corpName, this.onPressed});
   final TradingMst tmTarget;
   final VoidCallback? onPressed;
+  final String? corpName;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class TradingCard extends StatelessWidget {
                 flex: 1,
                 child: Container(
                   padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
-                  child: Text('${tmTarget.isuSrtCd}'),
+                  child: Text('${corpName ?? tmTarget.isuSrtCd}'),
                 )),
             Expanded(
                 flex: 3,

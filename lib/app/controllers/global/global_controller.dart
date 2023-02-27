@@ -33,6 +33,13 @@ class GlobalController extends GetxController {
   UserCreterionsInfo get creterionsInfo => _creterionsInfo.value;
   List<Corparation> get corpses => _corpsList;
 
+  Corparation? findOne(String isuSrtCd) {
+    Corparation? finded = corpses.firstWhereOrNull(
+      (corp) => corp.isuSrtCd == isuSrtCd,
+    );
+    return finded;
+  }
+
   Future<void> authentificate({
     required String email,
     required String pw,

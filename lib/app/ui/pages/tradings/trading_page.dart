@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:principle_fe/app/controllers/global/global_controller.dart';
 import 'package:principle_fe/app/controllers/tradings/trading_controller.dart';
 import 'package:principle_fe/app/data/providers/rest_api.dart';
 import 'package:principle_fe/app/data/repositories/tradings/trading_repository.dart';
@@ -19,44 +20,52 @@ class TradingPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('AAA'),
+        title: Text('${TradingController.to.title}'),
       ),
       body: Container(
           padding: const EdgeInsets.all(10),
           child: GetX<TradingController>(
             initState: (state) => TradingController.to,
             builder: (controller) {
-              // return Text('Trading Main ${TradingController.to.title}');
-              return ListView.separated(
-                padding: const EdgeInsets.all(1),
-                itemCount: TradingController.to.tradings.length,
-                itemBuilder: (context, index) => Obx(() {
-                  final tmTarget = TradingController.to.tradings[index];
-                  return TradingCard(
-                    tmTarget: tmTarget,
-                    onPressed: () {
-                      logger.i('trading card pressed!!!');
+              return RefreshIndicator(
+                  onRefresh: TradingController.to.onRefresh,
+                  child: ListView.separated(
+                    padding: const EdgeInsets.all(1),
+                    itemCount: TradingController.to.tradings.length,
+                    itemBuilder: (context, index) => Obx(() {
+                      final tmTarget = TradingController.to.tradings[index];
+                      final corpTarget =
+                          GlobalController.to.findOne(tmTarget.isuSrtCd!);
+                      return TradingCard(
+                        tmTarget: tmTarget,
+                        corpName: corpTarget?.isuAbbrv,
+                        onPressed: () {
+                          logger.i('trading card pressed!!!');
+                          // Get.toNamed(AppRoutes.tradingsSave,
+                          //     arguments: tmTarget);
+                        },
+                      );
+                    }),
+                    separatorBuilder: (BuildContext context, int index) {
+                      bool isVisible = false;
+                      if (0 < index &&
+                          index < TradingController.to.tradings.length - 1) {
+                        final tmCurrent = TradingController.to.tradings[index];
+                        final tmNext = TradingController.to.tradings[index + 1];
+                        if (tmCurrent.remainCount! > 0 &&
+                            tmNext.remainCount! <= 0) {
+                          isVisible = true;
+                        }
+                      }
+                      return isVisible
+                          ? const Text('완료된 거래')
+                          : DividerVisiblity(
+                              isVisible: isVisible,
+                              height: isVisible ? 1 : 0,
+                              thickness: isVisible ? 1 : 0,
+                            );
                     },
-                  );
-                }),
-                separatorBuilder: (BuildContext context, int index) {
-                  bool isVisible = false;
-                  if (0 < index &&
-                      index < TradingController.to.tradings.length - 1) {
-                    final tmBefore = TradingController.to.tradings[index];
-                    final tmCurrent = TradingController.to.tradings[index];
-                    if (tmBefore.remainCount! > 0 &&
-                        tmCurrent.remainCount! <= 0) {
-                      isVisible = true;
-                    }
-                  }
-                  return DividerVisiblity(
-                    isVisible: isVisible,
-                    height: 0,
-                    thickness: 0,
-                  );
-                },
-              );
+                  ));
             },
           )),
       floatingActionButton: FloatingActionButton(

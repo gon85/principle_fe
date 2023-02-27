@@ -27,6 +27,10 @@ class TradingController extends GetxController {
     await getTradingInfos();
   }
 
+  Future<void> onRefresh() async {
+    await getTradingInfos();
+  }
+
   Future<void> getTradingInfos({bool refresh = false}) async {
     try {
       TradingInfo tiTarget = await tradingRepo.getTradingInfos();

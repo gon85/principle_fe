@@ -75,6 +75,7 @@ class DropdownSearchable<T> extends StatefulWidget {
     this.trailingIcon,
     this.label,
     this.hintText,
+    this.errorText,
     this.selectedTrailingIcon,
     // this.enableFilter = false,
     // this.enableSearch = true,
@@ -94,6 +95,7 @@ class DropdownSearchable<T> extends StatefulWidget {
   final Widget? trailingIcon;
   final Widget? label;
   final String? hintText;
+  final String? errorText;
   final Widget? selectedTrailingIcon;
   // final bool enableFilter;
   // final bool enableSearch;
@@ -439,15 +441,16 @@ class _DropdownSearchableState<T> extends State<DropdownSearchable<T>> {
                       });
                     },
                     decoration: InputDecoration(
-                      enabled: widget.enabled,
-                      label: widget.label,
-                      hintText: widget.hintText,
-                      prefixIcon: widget.leadingIcon != null
-                          ? Container(
-                              key: _leadingKey, child: widget.leadingIcon)
-                          : null,
-                      suffixIcon: trailingButton,
-                    ).applyDefaults(effectiveInputDecorationTheme)),
+                            enabled: widget.enabled,
+                            label: widget.label,
+                            hintText: widget.hintText,
+                            prefixIcon: widget.leadingIcon != null
+                                ? Container(
+                                    key: _leadingKey, child: widget.leadingIcon)
+                                : null,
+                            suffixIcon: trailingButton,
+                            errorText: widget.errorText)
+                        .applyDefaults(effectiveInputDecorationTheme)),
                 for (Widget c in _initialMenu!) c,
                 trailingButton,
                 leadingButton,
