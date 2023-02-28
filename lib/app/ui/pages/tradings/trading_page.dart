@@ -41,8 +41,8 @@ class TradingPage extends StatelessWidget {
                         corpName: corpTarget?.isuAbbrv,
                         onPressed: () {
                           logger.i('trading card pressed!!!');
-                          // Get.toNamed(AppRoutes.tradingsSave,
-                          //     arguments: tmTarget);
+                          Get.toNamed(AppRoutes.tradingsDetail,
+                              arguments: tmTarget);
                         },
                       );
                     }),
